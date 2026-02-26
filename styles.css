@@ -53,6 +53,12 @@ body {
     overflow-x: hidden;
 }
 
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+}
+
 ::selection {
     background: var(--neon);
     color: var(--bg);
@@ -236,7 +242,7 @@ body {
     letter-spacing: 0.2em;
     color: var(--muted);
     text-decoration: none;
-    padding: 1.2rem 2rem;
+    padding: 1.5rem 2rem;
     transition: color 0.2s;
 }
 
@@ -545,7 +551,7 @@ body {
 .about-layout {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    gap: 4rem;
+    gap: clamp(1.5rem, 4vw, 4rem);
     align-items: start;
 }
 
@@ -1078,6 +1084,7 @@ body {
 .proj-detail.open {
     max-height: 600px;
     margin-top: 1.5rem;
+    padding-bottom: 1rem;
 }
 
 .proj-detail h4 {
@@ -1645,10 +1652,31 @@ body {
     .c-card {
         min-width: 100%;
     }
+
+    .hero {
+        padding: calc(var(--nav-h) + 1rem) 5% 3rem;
+        justify-content: flex-start;
+    }
+
+    .hero-inner {
+        margin-top: 10vh;
+    }
+
+    .skill-hex-card {
+        padding: 1.25rem;
+    }
 }
 
 @media (max-width: 480px) {
     .xr-section {
-        padding: 5rem 0;
+        padding: 3.5rem 0;
+    }
+
+    .proj-card {
+        padding: 1.25rem;
+    }
+
+    .c-card {
+        padding: 1rem;
     }
 }
