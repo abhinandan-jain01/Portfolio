@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Abhinandan Jain – Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        @page {
+            margin: 0.4in 0.5in;
+            size: A4;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #111;
+            background: #fff;
+            line-height: 1.4;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1.6rem 1.8rem;
+        }
+
+        /* HEADER */
+        .header {
+            text-align: center;
+            padding-bottom: 0.65rem;
+            border-bottom: 2.5px solid #111;
+            margin-bottom: 0.65rem;
+        }
+
+        .name {
+            font-size: 1.75rem;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #444;
+            letter-spacing: 0.07em;
+            margin: 0.2rem 0 0.55rem;
+        }
+
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.2rem 0.9rem;
+            font-size: 0.72rem;
+            color: #555;
+        }
+
+        .contact-row a {
+            color: #111;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .contact-row .sep {
+            color: #ccc;
+        }
+
+        /* SECTIONS */
+        .section {
+            margin-bottom: 0.55rem;
+        }
+
+        .sec-head {
+            font-size: 0.62rem;
+            font-weight: 800;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            padding-bottom: 0.25rem;
+            border-bottom: 1.5px solid #111;
+            margin-bottom: 0.4rem;
+        }
+
+        /* SUMMARY */
+        .summary {
+            font-size: 0.76rem;
+            color: #222;
+            line-height: 1.6;
+        }
+
+        /* TWO COL SKILLS */
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.15rem 1.5rem;
+        }
+
+        .skill-line {
+            font-size: 0.74rem;
+            line-height: 1.65;
+        }
+
+        .skill-line strong {
+            font-weight: 700;
+        }
+
+        /* SOFT SKILLS */
+        .soft-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            margin-top: 0.15rem;
+        }
+
+        .soft-pill {
+            font-size: 0.64rem;
+            font-weight: 700;
+            background: #111;
+            color: #fff;
+            padding: 0.18rem 0.6rem;
+            border-radius: 999px;
+            letter-spacing: 0.02em;
+        }
+
+        /* EXPERIENCE */
+        .exp-block {
+            margin-bottom: 0.35rem;
+        }
+
+        .exp-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .exp-role {
+            font-size: 0.78rem;
+            font-weight: 800;
+        }
+
+        .exp-date {
+            font-size: 0.64rem;
+            font-weight: 600;
+            color: #888;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .proj-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4rem 1.4rem;
+            margin-top: 0.2rem;
+        }
+
+        .proj-item {}
+
+        .proj-name {
+            font-size: 0.76rem;
+            font-weight: 700;
+            margin-bottom: 0.05rem;
+        }
+
+        .proj-sub {
+            font-size: 0.62rem;
+            color: #777;
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+
+        .proj-bullets {
+            list-style: none;
+            padding: 0;
+        }
+
+        .proj-bullets li {
+            font-size: 0.68rem;
+            color: #333;
+            line-height: 1.55;
+            padding-left: 0.75rem;
+            position: relative;
+        }
+
+        .proj-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #999;
+            font-size: 0.6rem;
+        }
+
+        /* FULL WIDTH PROJECT */
+        .proj-full {
+            grid-column: span 2;
+        }
+
+        .proj-full-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 1.4rem;
+        }
+
+        .proj-full .proj-bullets {
+            display: contents;
+        }
+
+        .proj-full .proj-bullets li {
+            grid-column: span 1;
+        }
+
+        /* EDUCATION */
+        .edu-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .edu-deg {
+            font-size: 0.76rem;
+            font-weight: 700;
+        }
+
+        .edu-school {
+            font-size: 0.7rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .edu-yr {
+            font-size: 0.64rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: #888;
+            font-weight: 600;
+        }
+
+        /* ACHIEVEMENTS */
+        .ach-list {
+            list-style: none;
+        }
+
+        .ach-list li {
+            font-size: 0.72rem;
+            color: #222;
+            line-height: 1.65;
+            padding-left: 0.75rem;
+            position: relative;
+        }
+
+        .ach-list li::before {
+            content: '★';
+            position: absolute;
+            left: 0;
+            color: #111;
+            font-size: 0.55rem;
+            top: 0.12rem;
+        }
+
+        .ach-list strong {
+            font-weight: 700;
+        }
+
+        /* PRINT BTN */
+        .print-bar {
+            position: fixed;
+            bottom: 1.2rem;
+            right: 1.2rem;
+            z-index: 100;
+        }
+
+        .print-btn {
+            background: #111;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 999px;
+            font-family: inherit;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1 class="name">Abhinandan Jain</h1>
+        <p class="title">Game Developer · Unity (2D & 3D) · AR / VR / XR</p>
+        <div class="contact-row">
+            <span>+91 8837798340</span><span class="sep">|</span>
+            <a href="mailto:ajain191204@gmail.com">ajain191204@gmail.com</a><span class="sep">|</span>
+            <a href="https://github.com/abhinandan-jain01" target="_blank">GitHub</a><span class="sep">|</span>
+            <a href="https://www.linkedin.com/in/abhinandan-jain-a547a0276" target="_blank">LinkedIn</a><span
+                class="sep">|</span>
+            <a href="https://abhiiix.itch.io" target="_blank">itch.io</a><span class="sep">|</span>
+            <span>India</span>
+        </div>
+    </header>
+
+    <div class="section">
+        <h2 class="sec-head">Professional Summary</h2>
+        <p class="summary">Unity Game Developer with hands-on experience building 2D, 3D, and XR applications using C#.
+            Skilled in gameplay programming, player controllers, input systems, and core mechanic implementation.
+            Experienced in developing complete game systems including movement, combat, and interaction logic. Strong
+            foundation in object-oriented programming, debugging, and performance optimization. Proven ability through
+            hackathons and academic projects involving VR, AR, and open-world gameplay. Passionate about creating
+            immersive, scalable, and technically robust gameplay experiences.</p>
+    </div>
+
+    <div class="section">
+        <h2 class="sec-head">Technical Skills</h2>
+        <div class="two-col">
+            <div class="skill-line"><strong>Programming:</strong> C#, C++ (basic)</div>
+            <div class="skill-line"><strong>Game Engine:</strong> Unity 2D / 3D / XR</div>
+            <div class="skill-line"><strong>XR Frameworks:</strong> XR Interaction Toolkit, AR Foundation</div>
+            <div class="skill-line"><strong>Gameplay Systems:</strong> Movement, combat, input, physics</div>
+            <div class="skill-line"><strong>Dev Tools:</strong> Git, Visual Studio, Unity New Input System</div>
+            <div class="skill-line"><strong>Creative Tools:</strong> Blender, Photoshop (UI), Lens Studio</div>
+            <div class="skill-line"><strong>Software Practices:</strong> Version control, SDLC, OOP</div>
+            <div class="skill-line"><strong>AI & Other:</strong> Gemini API, AI Prompting, Vibe Coding</div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="sec-head">Soft Skills</h2>
+        <div class="soft-row">
+            <span class="soft-pill">Analytical Thinking</span>
+            <span class="soft-pill">Time Management</span>
+            <span class="soft-pill">Team Collaboration</span>
+            <span class="soft-pill">Clear Communication</span>
+            <span class="soft-pill">Problem Solving</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="sec-head">Projects & Experience</h2>
+        <div class="exp-block">
+            <div class="exp-top">
+                <span class="exp-role">Gameplay Programmer — Academic & Hackathon Projects</span>
+                <span class="exp-date">2025 – 2026</span>
+            </div>
+        </div>
+        <div class="proj-row">
+
+            <div class="proj-item">
+                <div class="proj-name">Winter Survival: The Hunt for Tomorrow</div>
+                <div class="proj-sub">3D Open-World Survival · Unity · Digifest Hackathon (Top 10)</div>
+                <ul class="proj-bullets">
+                    <li>Built open-world exploration with predator AI, day-night cycle & survival quota system</li>
+                    <li>Managed level layout, asset integration, and dynamic adaptive soundtrack</li>
+                    <li>Used problem-solving and debugging techniques throughout development</li>
+                </ul>
+            </div>
+
+            <div class="proj-item">
+                <div class="proj-name">VR Shooter — XR Combat Prototype</div>
+                <div class="proj-sub">Unity · XR Interaction Toolkit · C#</div>
+                <ul class="proj-bullets">
+                    <li>Implemented VR shooting mechanics, enemy behavior & controller-based aiming</li>
+                    <li>Built XR object interaction, grabbing, and real-time input mapping</li>
+                    <li>Optimized scene performance for consistent VR frame stability</li>
+                </ul>
+            </div>
+
+            <div class="proj-item">
+                <div class="proj-name">Ballgame — 2D Physics Platformer</div>
+                <div class="proj-sub">Unity · Cross-Platform (PC + Mobile) · Published on itch.io</div>
+                <ul class="proj-bullets">
+                    <li>Built Rigidbody physics movement, checkpoints, hazards & multi-level progression</li>
+                    <li>Ported to mobile with touch controls, performance optimization & cross-platform builds</li>
+                    <li>Strong OOP architecture with modular, tag-based collision detection</li>
+                </ul>
+            </div>
+
+            <div class="proj-item">
+                <div class="proj-name">False Face — Tabletop Card Game</div>
+                <div class="proj-sub">Social Deduction · 28 Playtests · 4.8/5 Satisfaction</div>
+                <ul class="proj-bullets">
+                    <li>Designed 34-card asymmetric deduction game optimized for exactly 4 players</li>
+                    <li>Achieved perfect 50/50 win balance through 28 structured playtests with data collection</li>
+                    <li>Authored 40,000+ word publisher-ready GDD with competitor analysis for 6 games</li>
+                </ul>
+            </div>
+
+            <div class="proj-item proj-full">
+                <div class="proj-name">AR Education App <span style="color:#888;font-weight:400;font-size:0.6rem">(In
+                        Progress — 65% Complete)</span></div>
+                <div class="proj-sub">AR Foundation · Gemini API · Unity · Android · Physics for Class 8</div>
+                <div class="proj-full-inner">
+                    <ul class="proj-bullets">
+                        <li>Building augmented reality Physics experiments aligned to school curriculum</li>
+                        <li>Integrating Gemini AI tutor for intelligent quiz evaluation & interactive learning</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="sec-head">Education</h2>
+        <div class="edu-row">
+            <div>
+                <div class="edu-deg">Bachelor of Engineering — Computer Science Engineering</div>
+                <div class="edu-school">Chitkara University · Game Development Specialization</div>
+            </div>
+            <span class="edu-yr">2023 – Present</span>
+        </div>
+    </div>
+
+    <div class="section" style="margin-bottom:0">
+        <h2 class="sec-head">Achievements</h2>
+        <ul class="ach-list">
+            <li><strong>Phase 2 Qualifier</strong> — XR Hackathon 2025 (WAVES)</li>
+            <li><strong>Top 10 Finish</strong> — Digifest Hackathon 2026, Jaipur</li>
+        </ul>
+    </div>
+
+    <div class="print-bar no-print">
+        <button class="print-btn" onclick="window.print()">⬇ Save as PDF</button>
+    </div>
+
+</body>
+
+</html>
