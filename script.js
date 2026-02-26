@@ -112,7 +112,6 @@
 
     // ---- Scroll tracking ----
     let scrollY = 0;
-    const content = document.getElementById('content');
     window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
 
     // ---- Resize ----
@@ -216,6 +215,7 @@ document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
 // STAT COUNTERS
 // ─────────────────────────────────────────────
 function animateCount(el, target, dur = 1600) {
+    const suffix = el.dataset.suffix || '';
     let start;
     const step = ts => {
         if (!start) start = ts;
@@ -223,7 +223,7 @@ function animateCount(el, target, dur = 1600) {
         const eased = 1 - Math.pow(1 - p, 3);
         el.textContent = Math.floor(eased * target);
         if (p < 1) requestAnimationFrame(step);
-        else el.textContent = target;
+        else el.textContent = target + suffix;
     };
     requestAnimationFrame(step);
 }
@@ -231,20 +231,7 @@ const statObs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const el = entry.target;
-            if (el.classList.contains('hm-special')) {
-                let start;
-                const step = ts => {
-                    if (!start) start = ts;
-                    const p = Math.min((ts - start) / 1600, 1);
-                    const eased = 1 - Math.pow(1 - p, 3);
-                    el.textContent = (eased * 4.8).toFixed(1);
-                    if (p < 1) requestAnimationFrame(step);
-                    else el.textContent = '4.8';
-                };
-                requestAnimationFrame(step);
-            } else {
-                animateCount(el, parseInt(el.dataset.count));
-            }
+            animateCount(el, parseInt(el.dataset.count));
             statObs.unobserve(el);
         }
     });
