@@ -10,7 +10,14 @@
 // ─────────────────────────────────────────────
 (function init3D() {
     const canvas = document.getElementById('scene3d');
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    const renderer = new THREE.WebGLRenderer({
+        canvas,
+        alpha: true,
+        antialias: true,
+        powerPreference: 'high-performance'
+    });
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
@@ -19,7 +26,7 @@
     camera.position.z = 30;
 
     // ---- Particles (points) ----
-    const COUNT = 600;
+    const COUNT = isMobile ? 350 : 600;
     const positions = new Float32Array(COUNT * 3);
     const colors = new Float32Array(COUNT * 3);
     const sizes = new Float32Array(COUNT);
@@ -116,9 +123,12 @@
 
     // ---- Resize ----
     window.addEventListener('resize', () => {
-        camera.aspect = window.innerWidth / window.innerHeight;
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        camera.aspect = w / h;
+        camera.fov = w < 768 ? 70 : 60;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setSize(w, h);
     });
 
     // ---- Animate ----

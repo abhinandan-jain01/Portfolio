@@ -1,0 +1,51 @@
+:root {
+    /* Ensure CSS variables work consistently across all devices */
+    --bg: #050810;
+    --bg2: #090e1a;
+    --glass: rgba(10, 18, 40, 0.65);
+    --glass-border: rgba(100, 180, 255, 0.12);
+    --glass-border-hover: rgba(100, 180, 255, 0.35);
+
+    --neon: #00e5ff;
+    --neon-dim: rgba(0, 229, 255, 0.3);
+    --purple: #b388ff;
+    --purple-dim: rgba(179, 136, 255, 0.3);
+    --green: #00e676;
+    --green-dim: rgba(0, 230, 118, 0.3);
+    --orange: #ffab40;
+    --orange-dim: rgba(255, 171, 64, 0.3);
+    --pink: #ff4081;
+    --white: #e8edf5;
+    --muted: #7b8ca8;
+    --faint: #3a4a66;
+
+    --font-head: 'Orbitron', sans-serif;
+    --font-body: 'Inter', sans-serif;
+
+    --radius: 16px;
+    --radius-sm: 10px;
+    --nav-h: 68px;
+}
+
+/* Responsive refinements for tablets & phones */
+@media (max-width: 768px) {
+    .hero {
+        padding: calc(var(--nav-h) + 0.5rem) 5% 3rem;
+        justify-content: flex-start;
+    }
+
+    .hero-inner {
+        margin-top: 6vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-name {
+        font-size: clamp(2.2rem, 13vw, 3.2rem);
+    }
+
+    .hero-tagline {
+        font-size: 0.95rem;
+    }
+}
+
