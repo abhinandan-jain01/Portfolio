@@ -321,5 +321,6 @@ document.querySelectorAll('.proj-more').forEach(btn => {
 // ─────────────────────────────────────────────
 // CONSOLE EASTER EGG
 // ─────────────────────────────────────────────
+// marker: optimization update
 console.log('%c 🥽 XR Portfolio – Abhinandan Jain ', 'background: #00e5ff; color: #050810; font-size: 14px; padding: 6px 12px; border-radius: 4px; font-weight: bold;');
 console.log('%c Built with Three.js + vanilla HTML/CSS/JS ', 'color: #b388ff; font-size: 12px;');
