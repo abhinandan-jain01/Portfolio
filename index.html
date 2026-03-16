@@ -446,6 +446,63 @@
             </div>
           </article>
 
+          <!-- Enemy AI -->
+          <article class="proj-card" data-category="3d" data-reveal>
+            <div class="proj-card-border"></div>
+            <div class="proj-top">
+              <span class="proj-badge proj-badge-3d">AI PROTOTYPE</span>
+              <div class="proj-tags"><span>Unity</span><span>C#</span><span>NavMesh</span><span>FSM</span></div>
+            </div>
+            <div class="proj-icon-ring ring-blue">🧠</div>
+            <h3 class="proj-name">Enemy AI<br /><small>Modular FSM Combat AI</small></h3>
+            <p class="proj-desc">A fully modular, FSM-driven Enemy AI system for Unity. Features realistic
+              sight cones, event-driven hearing, dynamic combat states, IK weapon aiming, and tactical
+              cover-seeking behavior.</p>
+            <div class="proj-chips">
+              <span>🔎 Sight & Hearing</span>
+              <span>🗺️ NavMesh Chase</span>
+              <span>🎯 IK Aiming</span>
+              <span>🛡️ Cover Seeking</span>
+              <span>⚡ FSM Architecture</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://abhiiix.itch.io/enemy-ai-prototype" target="_blank"
+                class="proj-link proj-link-itch">🎮 Play on itch.io</a>
+              <a href="https://github.com/abhinandan-jain01/Enemy-AI" target="_blank"
+                class="proj-link proj-link-gh">🐙 GitHub</a>
+            </div>
+            <button class="proj-more" data-target="det-enemy">Read More ›</button>
+            <div class="proj-detail" id="det-enemy">
+              <h4>About</h4>
+              <p>A prototype built to demonstrate advanced enemy behavior architecture. The AI is modular
+                by design — each concern (movement, perception, combat, health) lives in its own script,
+                making it easy to swap or extend without breaking existing logic.</p>
+              <h4>AI States</h4>
+              <ul>
+                <li>🚶 <strong>Idle / Patrol</strong> – Wanders waypoints while passively scanning for the
+                  player via sight and sound</li>
+                <li>🔍 <strong>Search</strong> – Triggered by noise (footsteps, gunshots); enemy halts,
+                  looks around, then moves to the last known position</li>
+                <li>🏃 <strong>Chase</strong> – Actively pursues via NavMesh; falls back to Search if
+                  line-of-sight is broken</li>
+                <li>🎯 <strong>Ranged / Melee</strong> – Dynamically switches attack type based on distance;
+                  ranged uses IK to physically aim at the player's chest</li>
+                <li>🛡️ <strong>Take Cover</strong> – When health drops below 50%, tactically analyzes the
+                  NavMesh to find cover behind solid geometry</li>
+              </ul>
+              <h4>Key Systems</h4>
+              <ul>
+                <li>👁️ <strong>Realistic Perception</strong> – Sight uses Raycast + angle checks;
+                  hearing is event-driven based on player action noise values</li>
+                <li>🎨 <strong>Procedural UI</strong> – Alert bubbles and health bars generated in C# at
+                  runtime; no fragile prefabs</li>
+                <li>🧩 <strong>Modular Scripts</strong> – <code>EnemySensor</code>, <code>EnemyPatrol</code>,
+                  <code>EnemyShooting</code>, <code>EnemyMelee</code>, <code>EnemyHealth</code> — all
+                  independently extensible</li>
+              </ul>
+            </div>
+          </article>
+
           <!-- False Face -->
           <article class="proj-card proj-card-wide" data-category="design" data-reveal>
             <div class="proj-card-border"></div>
