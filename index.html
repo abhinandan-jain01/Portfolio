@@ -1,668 +1,572 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abhinandan Jain – XR Portfolio</title>
-  <meta name="description" content="Immersive 3D portfolio of Abhinandan Jain – Unity, VR, AR & Game Development." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="responsive.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abhinandan Jain — Game Developer</title>
+  <meta name="description" content="Portfolio of Abhinandan Jain — Unity XR Game Developer building immersive 2D, 3D, VR and AR experiences."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
 </head>
-
 <body>
+  <canvas id="bg-canvas"></canvas>
 
-  <!-- 3D Canvas -->
-  <canvas id="scene3d"></canvas>
+  <!-- SCANLINES -->
+  <div class="scanlines" aria-hidden="true"></div>
 
-  <!-- Scan-line overlay -->
-  <div class="scanlines"></div>
-
-  <!-- HUD Nav -->
-  <nav class="hud-nav" id="nav">
-    <div class="hud-logo">
-      <div class="logo-hex"></div>
-      <span>AJ</span>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-brand">
+      <span class="nav-bracket">[</span>
+      <span class="nav-name">ABJ</span>
+      <span class="nav-bracket">]</span>
     </div>
-    <ul class="hud-links">
-      <li><a href="#hero" class="hud-link active" data-section="hero">[ HOME ]</a></li>
-      <li><a href="#about" class="hud-link" data-section="about">[ ABOUT ]</a></li>
-      <li><a href="#skills" class="hud-link" data-section="skills">[ SKILLS ]</a></li>
-      <li><a href="#projects" class="hud-link" data-section="projects">[ PROJECTS ]</a></li>
-      <li><a href="#ongoing" class="hud-link" data-section="ongoing">[ LIVE ]</a></li>
-      <li><a href="#contact" class="hud-link" data-section="contact">[ LINK ]</a></li>
+    <ul class="nav-links">
+      <li><a href="#hero" class="nav-link active" data-section="hero">Home</a></li>
+      <li><a href="#about" class="nav-link" data-section="about">About</a></li>
+      <li><a href="#skills" class="nav-link" data-section="skills">Skills</a></li>
+      <li><a href="#projects" class="nav-link" data-section="projects">Quests</a></li>
+      <li><a href="#ongoing" class="nav-link" data-section="ongoing">Active</a></li>
+      <li><a href="#contact" class="nav-link" data-section="contact">Contact</a></li>
     </ul>
-    <div class="hud-indicator">
-      <div class="indicator-ring"></div>
-      <span class="indicator-text">ONLINE</span>
+    <div class="nav-status">
+      <span class="status-dot"></span>
+      <span class="status-text">Online</span>
     </div>
-    <button class="hud-burger" id="burger" aria-label="Menu">
+    <button class="burger" id="burger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-overlay" id="mobileOverlay">
-    <ul>
-      <li><a href="#hero" class="mob-link">HOME</a></li>
-      <li><a href="#about" class="mob-link">ABOUT</a></li>
-      <li><a href="#skills" class="mob-link">SKILLS</a></li>
-      <li><a href="#projects" class="mob-link">PROJECTS</a></li>
-      <li><a href="#ongoing" class="mob-link">LIVE</a></li>
-      <li><a href="#contact" class="mob-link">LINK</a></li>
-    </ul>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#hero" class="mob-link">Home</a>
+    <a href="#about" class="mob-link">About</a>
+    <a href="#skills" class="mob-link">Skills</a>
+    <a href="#projects" class="mob-link">Quests</a>
+    <a href="#ongoing" class="mob-link">Active</a>
+    <a href="#contact" class="mob-link">Contact</a>
   </div>
 
-  <!-- Content Wrapper (scrollable over the 3D scene) -->
-  <div class="content" id="content">
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>XR &amp; Game Developer</span>
+      </div>
+      <h1 class="hero-name">
+        <span class="glitch" data-text="ABHINANDAN">ABHINANDAN</span>
+        <span class="glitch accent-text" data-text="JAIN">JAIN</span>
+      </h1>
+      <p class="hero-sub">Crafting immersive worlds in <span class="hl">Unity</span> · <span class="hl">VR</span> · <span class="hl">AR</span> · <span class="hl">Blender</span></p>
 
-    <!-- HERO -->
-    <section class="hero" id="hero">
-      <div class="hero-inner">
-        <div class="hero-badge-wrap">
-          <div class="hero-badge">
-            <span class="badge-pulse"></span>
-            <span class="badge-txt">Game Developer</span>
+      <!-- PLAYER STATS -->
+      <div class="player-card">
+        <div class="player-level">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          <span>LVL 5</span>
+        </div>
+        <div class="stats-row">
+          <div class="stat-box">
+            <span class="stat-val" data-count="4">0</span>
+            <span class="stat-lbl">Shipped</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-box">
+            <span class="stat-val" data-count="28">0</span>
+            <span class="stat-lbl">Playtests</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-box">
+            <span class="stat-val" data-count="3">0</span>
+            <span class="stat-lbl">Platforms</span>
+          </div>
+          <div class="stat-sep"></div>
+          <div class="stat-box">
+            <span class="stat-val">2</span>
+            <span class="stat-lbl">Hackathons</span>
           </div>
         </div>
-        <h1 class="hero-name">
-          <span class="name-top">ABHINANDAN</span>
-          <span class="name-bottom">JAIN</span>
-        </h1>
-        <p class="hero-tagline">
-          Building immersive worlds through <em>Unity</em>, <em>XR</em> & <em>Imagination</em>
-        </p>
-        <div class="hero-metrics">
-          <div class="hm"><span class="hm-val" data-count="4" data-suffix="+">0</span><span
-              class="hm-lbl">Projects</span>
+        <div class="xp-row">
+          <span class="xp-label">EXP</span>
+          <div class="xp-track">
+            <div class="xp-fill" style="--xp: 72%"></div>
           </div>
-          <div class="hm-sep"></div>
-          <div class="hm"><span class="hm-val" data-count="5">0</span><span class="hm-lbl">Platforms</span>
-          </div>
-        </div>
-        <div class="hero-actions">
-          <a href="#projects" class="xr-btn xr-btn-primary">
-            <span class="xr-btn-glow"></span>
-            <span>Explore Work</span>
-          </a>
-          <a href="#contact" class="xr-btn xr-btn-outline">Contact Me</a>
-          <a href="resume.html" target="_blank" class="xr-btn xr-btn-outline">📄 Resume</a>
+          <span class="xp-label">72%</span>
         </div>
       </div>
-      <div class="scroll-indicator">
-        <div class="scroll-line"></div>
-        <span>SCROLL</span>
-      </div>
-    </section>
 
-    <!-- ABOUT -->
-    <section class="xr-section" id="about">
-      <div class="xr-container">
-        <div class="sec-header" data-reveal>
-          <div class="sec-tag">// ABOUT</div>
-          <h2 class="sec-title">The <span class="glow-text">Developer</span></h2>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Start Quest
+        </a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+        <a href="resume.html" target="_blank" class="btn btn-ghost">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Resume
+        </a>
+      </div>
+    </div>
+    <div class="scroll-cue">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="sec-label">// PLAYER_INFO</div>
+      <h2 class="sec-title">About <span class="accent-text">Me</span></h2>
+      <div class="about-grid">
+        <div class="about-text" data-reveal>
+          <p class="about-p">I'm a <strong>Unity Game Developer</strong> passionate about crafting immersive digital experiences. From 3D survival games to VR shooters, AR education apps to tabletop prototypes — I build across every dimension of play.</p>
+          <p class="about-p">Pursuing <strong>Computer Science Engineering</strong> with a Game Development specialization at <strong>Chitkara University</strong>. I believe the best games don't just entertain — they challenge, teach, and move people.</p>
+          <div class="tag-row">
+            <span class="tag">Unity Engine</span>
+            <span class="tag">XR / VR / AR</span>
+            <span class="tag">Blender</span>
+            <span class="tag">Photoshop</span>
+            <span class="tag">Lens Studio</span>
+            <span class="tag">AI Prompting</span>
+            <span class="tag">Vibe Coding</span>
+            <span class="tag">Mobile Dev</span>
+          </div>
         </div>
-        <div class="about-layout" data-reveal>
-          <div class="about-bio">
-            <p>I'm a Unity game developer who lives at the intersection of code and creativity. From 3D
-              survival games to VR shooters, AR education apps to tabletop prototypes – I build across
-              every dimension of play.</p>
-            <p>Currently pursuing <strong>Computer Science Engineering</strong> with a <strong>Game
-                Development Specialization</strong> at <strong class="highlight">Chitkara
-                University</strong>.</p>
-            <div class="bio-chips">
-              <span class="chip">🎮 Unity Engine</span>
-              <span class="chip">🥽 XR / VR / AR</span>
-              <span class="chip">🧊 Blender</span>
-              <span class="chip">🖼️ Photoshop</span>
-              <span class="chip">👓 Lens Studio</span>
-              <span class="chip">🤖 AI Prompting</span>
-              <span class="chip">🎵 Vibe Coding</span>
-              <span class="chip">📱 Mobile Dev</span>
+        <div class="about-cards" data-reveal>
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
             </div>
-          </div>
-          <div class="about-panels">
-            <div class="holo-panel">
-              <div class="panel-icon">🎓</div>
+            <div>
               <h4>Education</h4>
-              <p>B.E. Computer Science</p>
-              <span class="panel-sub">Chitkara University · Game Design</span>
+              <p>B.E. Computer Science Engineering</p>
+              <span>Chitkara University · Game Dev Spec.</span>
             </div>
-            <div class="holo-panel">
-              <div class="panel-icon">🌱</div>
-              <h4>Building</h4>
-              <p>AR Education App</p>
-              <span class="panel-sub">Unity + Gemini AI + AR Foundation</span>
+          </div>
+          <div class="info-card">
+            <div class="info-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
-            <div class="holo-panel">
-              <div class="panel-icon">🏆</div>
-              <h4>Highlight</h4>
-              <p>4.8 / 5 Satisfaction</p>
-              <span class="panel-sub">False Face · 28 Playtests</span>
-            </div>
-            <div class="holo-panel">
-              <div class="panel-icon">📍</div>
+            <div>
               <h4>Location</h4>
               <p>India</p>
-              <span class="panel-sub">Open to remote work</span>
+              <span>Open to remote collaboration</span>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOFT SKILLS & ACHIEVEMENTS -->
-    <section class="xr-section xr-section-alt" id="softskills">
-      <div class="xr-container">
-        <div class="sec-header centered" data-reveal>
-          <div class="sec-tag">// STRENGTHS</div>
-          <h2 class="sec-title">Soft <span class="glow-text">Skills</span></h2>
-        </div>
-        <div class="soft-grid" data-reveal>
-          <div class="soft-card">
-            <span class="soft-icon">🧠</span>
-            <h4>Analytical Thinking</h4>
-          </div>
-          <div class="soft-card">
-            <span class="soft-icon">⏱️</span>
-            <h4>Time Management</h4>
-          </div>
-          <div class="soft-card">
-            <span class="soft-icon">🤝</span>
-            <h4>Team Collaboration</h4>
-          </div>
-          <div class="soft-card">
-            <span class="soft-icon">💬</span>
-            <h4>Clear Communication</h4>
-          </div>
-          <div class="soft-card">
-            <span class="soft-icon">🔧</span>
-            <h4>Problem Solving</h4>
-          </div>
-        </div>
-
-        <div class="sec-header centered" data-reveal style="margin-top:4rem">
-          <div class="sec-tag">// RECOGNITION</div>
-          <h2 class="sec-title">Achieve<span class="glow-text">ments</span></h2>
-        </div>
-        <div class="achieve-grid" data-reveal>
-          <div class="achieve-card">
-            <div class="achieve-glow"></div>
-            <span class="achieve-icon">🏆</span>
+          <div class="info-card achieve-card">
+            <div class="info-icon gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+            </div>
             <div>
               <h4>Phase 2 Qualifier</h4>
               <p>XR Hackathon 2025 (WAVES)</p>
+              <span class="achieve-badge">Achievement Unlocked</span>
             </div>
           </div>
-          <div class="achieve-card">
-            <div class="achieve-glow"></div>
-            <span class="achieve-icon">🥇</span>
+          <div class="info-card achieve-card">
+            <div class="info-icon gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/></svg>
+            </div>
             <div>
               <h4>Top 10 Finish</h4>
               <p>Digifest Hackathon 2026, Jaipur</p>
+              <span class="achieve-badge">Achievement Unlocked</span>
             </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- SKILLS -->
-    <section class="xr-section xr-section-alt" id="skills">
-      <div class="xr-container">
-        <div class="sec-header centered" data-reveal>
-          <div class="sec-tag">// SYSTEMS</div>
-          <h2 class="sec-title">Tech <span class="glow-text">Stack</span></h2>
+      <!-- SOFT SKILLS -->
+      <div class="soft-section" data-reveal>
+        <div class="sec-label small">// SOFT_SKILLS</div>
+        <div class="soft-grid">
+          <div class="soft-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Analytical Thinking</span>
+          </div>
+          <div class="soft-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Time Management</span>
+          </div>
+          <div class="soft-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Team Collaboration</span>
+          </div>
+          <div class="soft-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span>Clear Communication</span>
+          </div>
+          <div class="soft-card">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 9.17l4.24-4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M9.17 14.83l-4.24 4.24"/><circle cx="12" cy="12" r="4"/></svg>
+            <span>Problem Solving</span>
+          </div>
         </div>
-        <div class="skills-hex-grid" data-reveal>
+      </div>
+    </div>
+  </section>
 
-          <div class="skill-hex-card">
-            <div class="hex-glow hex-glow-purple"></div>
-            <h3><span class="hex-icon">⚙️</span> Engines</h3>
-            <div class="hex-bars">
-              <div class="hex-bar"><span>Unity 3D / 2D</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:92%"></div>
-                </div>
-              </div>
-              <div class="hex-bar"><span>XR Interaction Toolkit</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:80%"></div>
-                </div>
-              </div>
-              <div class="hex-bar"><span>AR Foundation</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:78%"></div>
-                </div>
-              </div>
+  <!-- SKILLS -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="sec-label">// SKILL_TREE</div>
+      <h2 class="sec-title">Tech <span class="accent-text">Stack</span></h2>
+      <div class="skills-grid" data-reveal>
+
+        <div class="skill-group">
+          <h3 class="skill-group-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Engines &amp; XR
+          </h3>
+          <div class="xp-skill"><span>Unity 3D / 2D</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:92%"></div></div><span class="xp-pct">92</span></div>
+          <div class="xp-skill"><span>XR Interaction Toolkit</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:82%"></div></div><span class="xp-pct">82</span></div>
+          <div class="xp-skill"><span>AR Foundation</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:78%"></div></div><span class="xp-pct">78</span></div>
+          <div class="xp-skill"><span>Lens Studio</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:70%"></div></div><span class="xp-pct">70</span></div>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            Programming
+          </h3>
+          <div class="xp-skill"><span>C# (Unity)</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:90%"></div></div><span class="xp-pct">90</span></div>
+          <div class="xp-skill"><span>OOP &amp; Patterns</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:85%"></div></div><span class="xp-pct">85</span></div>
+          <div class="xp-skill"><span>Physics Systems</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:88%"></div></div><span class="xp-pct">88</span></div>
+          <div class="xp-skill"><span>Gemini API</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:80%"></div></div><span class="xp-pct">80</span></div>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+            Creative Tools
+          </h3>
+          <div class="xp-skill"><span>Blender 3D</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:75%"></div></div><span class="xp-pct">75</span></div>
+          <div class="xp-skill"><span>Photoshop</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:72%"></div></div><span class="xp-pct">72</span></div>
+          <div class="xp-skill"><span>Game Design (GDD)</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:88%"></div></div><span class="xp-pct">88</span></div>
+          <div class="xp-skill"><span>Playtest &amp; Balance</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:85%"></div></div><span class="xp-pct">85</span></div>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="skill-group-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            AI &amp; Other
+          </h3>
+          <div class="xp-skill"><span>AI Prompting</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:88%"></div></div><span class="xp-pct">88</span></div>
+          <div class="xp-skill"><span>Vibe Coding</span><div class="xp-bar"><div class="xp-bar-fill vibe" style="--p:95%"></div></div><span class="xp-pct">95</span></div>
+          <div class="xp-skill"><span>AI NPC / Enemy Logic</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:80%"></div></div><span class="xp-pct">80</span></div>
+          <div class="xp-skill"><span>Mobile Adaptation</span><div class="xp-bar"><div class="xp-bar-fill" style="--p:75%"></div></div><span class="xp-pct">75</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="container">
+      <div class="sec-label">// QUEST_LOG</div>
+      <h2 class="sec-title">Featured <span class="accent-text">Quests</span></h2>
+      <div class="filter-bar" data-reveal>
+        <button class="filt active" data-filter="all">All</button>
+        <button class="filt" data-filter="3d">3D</button>
+        <button class="filt" data-filter="2d">2D</button>
+        <button class="filt" data-filter="vr">VR/XR</button>
+        <button class="filt" data-filter="tabletop">Tabletop</button>
+      </div>
+      <div class="quest-grid" id="questGrid" data-reveal>
+
+        <!-- Winter Survival -->
+        <article class="quest-card" data-cat="3d">
+          <div class="quest-glow"></div>
+          <div class="quest-header">
+            <span class="quest-type type-3d">3D OPEN-WORLD</span>
+            <div class="quest-tags"><span>Unity</span><span>C#</span><span>AI</span><span>Digifest</span></div>
+          </div>
+          <div class="quest-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M12 6v6l4 2"/><path d="M8 14s.5 2 4 2 4-2 4-2"/></svg>
+          </div>
+          <h3 class="quest-title">Winter Survival<span>The Hunt for Tomorrow</span></h3>
+          <p class="quest-desc">3D open-world survival game built for Digifest Hackathon. Gather food, evade intelligent predators, protect your family across a harsh winter wilderness.</p>
+          <div class="quest-chips">
+            <span>Open-World Exploration</span>
+            <span>Predator AI</span>
+            <span>Day-Night Cycle</span>
+            <span>Adaptive Sound</span>
+          </div>
+          <div class="quest-reward">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>Top 10 — Digifest 2026</span>
+          </div>
+          <button class="quest-more" data-id="winter">Details
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="quest-details" id="winter">
+            <h4>About</h4>
+            <p>You play as a lone family man forced to venture into a frozen open-world forest each day. Rising daily food quotas and intelligent wolves make every decision critical — run, distract, or sacrifice food to survive.</p>
+            <h4>Key Systems</h4>
+            <ul>
+              <li>Open-World Exploration — freely navigable winter environment</li>
+              <li>Predator AI — wolves track and adjust behavior dynamically</li>
+              <li>Day-Night Cycle — dynamic lighting with atmosphere</li>
+              <li>Adaptive Soundtrack — music reacts to danger in real-time</li>
+              <li>Survival Quota — escalating daily requirements</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- VR Shooter -->
+        <article class="quest-card" data-cat="vr">
+          <div class="quest-glow glow-purple"></div>
+          <div class="quest-header">
+            <span class="quest-type type-vr">VR / XR</span>
+            <div class="quest-tags"><span>Unity</span><span>XR Toolkit</span><span>C#</span></div>
+          </div>
+          <div class="quest-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3 class="quest-title">VR Shooter<span>XR Combat Prototype</span></h3>
+          <p class="quest-desc">Immersive first-person VR combat prototype. Controller-based aiming, real-time hit detection, enemy behavior, full XR Interaction Toolkit integration.</p>
+          <div class="quest-chips">
+            <span>Raycast Combat</span>
+            <span>Enemy AI</span>
+            <span>XR Input</span>
+            <span>VR Optimized</span>
+          </div>
+          <div class="quest-links">
+            <a href="https://github.com/abhinandan-jain01/VrShooter.git" target="_blank" class="quest-link">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              GitHub
+            </a>
+          </div>
+          <button class="quest-more" data-id="vr">Details
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="quest-details" id="vr">
+            <h4>About</h4>
+            <p>A VR prototype in Unity using XR Interaction Toolkit. Focused on immersive weapon handling, real-time shooting mechanics, and responsive VR controller interaction.</p>
+            <h4>Key Systems</h4>
+            <ul>
+              <li>Weapon &amp; Shooting — controller aiming, raycast hit detection</li>
+              <li>Enemy Interaction — damage detection, collision response</li>
+              <li>VR Interaction — object grabbing, real-time input mapping</li>
+              <li>Performance — scene optimization for VR frame stability</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Ballgame -->
+        <article class="quest-card" data-cat="2d">
+          <div class="quest-glow glow-green"></div>
+          <div class="quest-header">
+            <span class="quest-type type-2d">2D PLATFORMER</span>
+            <div class="quest-tags"><span>Unity</span><span>C#</span><span>Mobile</span></div>
+          </div>
+          <div class="quest-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+          </div>
+          <h3 class="quest-title">Ballgame<span>Physics Platformer</span></h3>
+          <p class="quest-desc">2D physics-driven ball platformer. Multi-level progression, checkpoints, hazards, mobile touch controls. Published and playable on itch.io.</p>
+          <div class="quest-chips">
+            <span>Physics Movement</span>
+            <span>Checkpoints</span>
+            <span>Hazard Logic</span>
+            <span>Mobile Port</span>
+          </div>
+          <div class="quest-links">
+            <a href="https://abhiiix.itch.io/ballroll-2d" target="_blank" class="quest-link link-red">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h21A1.5 1.5 0 0 1 24 1.5v21A1.5 1.5 0 0 1 22.5 24h-21A1.5 1.5 0 0 1 0 22.5V1.5zm7.5 3A4.5 4.5 0 0 0 3 9v6a4.5 4.5 0 0 0 4.5 4.5h9A4.5 4.5 0 0 0 21 15V9a4.5 4.5 0 0 0-4.5-4.5h-9zM9 10.5A1.5 1.5 0 1 1 9 7.5 1.5 1.5 0 0 1 9 10.5zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM12 18a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+              Play on itch.io
+            </a>
+          </div>
+          <button class="quest-more" data-id="ball">Details
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="quest-details" id="ball">
+            <h4>About</h4>
+            <p>A 2D platformer where the player controls a physics-driven ball navigating levels filled with hazards, moving platforms, and checkpoints. Cross-platform (PC + Mobile).</p>
+            <h4>Key Systems</h4>
+            <ul>
+              <li>Rigidbody physics movement, ground detection, area-based jump</li>
+              <li>Dynamic checkpoint activation and auto-respawn</li>
+              <li>Spike balls, moving platforms, jump pads, trigger-based hazards</li>
+              <li>Touch controls optimized for mobile with post-launch fixes</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- False Face -->
+        <article class="quest-card quest-wide" data-cat="tabletop">
+          <div class="quest-glow glow-orange"></div>
+          <div class="quest-header">
+            <span class="quest-type type-tabletop">TABLETOP</span>
+            <div class="quest-tags"><span>Jan–Dec 2025</span><span>Photoshop</span><span>Unity Proto</span></div>
+          </div>
+          <div class="quest-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3 class="quest-title">False Face<span>Asymmetric Social Deduction</span></h3>
+          <div class="ff-stats">
+            <div class="ff-stat"><span class="ff-val">28</span><span>Playtests</span></div>
+            <div class="ff-stat"><span class="ff-val">4.8<s>/5</s></span><span>Satisfaction</span></div>
+            <div class="ff-stat"><span class="ff-val">27<s>min</s></span><span>Avg Playtime</span></div>
+            <div class="ff-stat"><span class="ff-val">50/50</span><span>Win Balance</span></div>
+          </div>
+          <p class="quest-desc">4-player tabletop deduction game where detectives race a 6-round deadline to unmask a hidden spy. Backed by 28 playtests and 40,000+ words of design documentation.</p>
+          <div class="quest-chips">
+            <span>34-Card System</span>
+            <span>Asymmetric Roles</span>
+            <span>Hard Deadline</span>
+            <span>Publisher-Ready GDD</span>
+          </div>
+          <button class="quest-more" data-id="ff">Details
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="quest-details" id="ff">
+            <h4>Concept</h4>
+            <p>Three detectives solve a mystery within 6 rounds while identifying the hidden spy — the only player who knows the truth. Roles distributed via sealed envelopes for maximum tension.</p>
+            <h4>Design Highlights</h4>
+            <ul>
+              <li>34-card system — 30 mystery cards + asymmetric gameplay cards</li>
+              <li>Hard deadline — guaranteed gameplay completion with strategic urgency</li>
+              <li>28 structured playtests — achieved perfect 50/50 win rate</li>
+              <li>40,000+ word publisher-ready GDD with competitor analysis (6 games)</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ONGOING -->
+  <section class="section section-alt" id="ongoing">
+    <div class="container">
+      <div class="sec-label">// ACTIVE_QUESTS</div>
+      <h2 class="sec-title">Currently <span class="accent-text">Building</span></h2>
+      <p class="sec-sub">Live projects in active development. Updates incoming.</p>
+      <div class="ongoing-grid" data-reveal>
+
+        <div class="ongoing-card">
+          <div class="ongoing-pulse">
+            <span class="pulse-ring"></span>
+            <span class="pulse-dot"></span>
+          </div>
+          <div class="ongoing-top">
+            <span class="ongoing-status">ACTIVE DEVELOPMENT</span>
+          </div>
+          <div class="ongoing-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          </div>
+          <h3>AR Education App</h3>
+          <p class="ongoing-sub">Physics for Class 8 Students</p>
+          <p class="ongoing-desc">Augmented reality application bringing Physics experiments to life for 8th-graders. Students perform AR activities then take an AI-powered quiz evaluated by a built-in Gemini AI tutor.</p>
+          <div class="ongoing-techs">
+            <span>Unity</span><span>AR Foundation</span><span>Gemini API</span><span>C#</span><span>Android</span>
+          </div>
+          <div class="ongoing-feats">
+            <div class="feat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              AR Physics Experiments
+            </div>
+            <div class="feat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Gemini AI Tutor
+            </div>
+            <div class="feat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Quiz &amp; Evaluation System
+            </div>
+            <div class="feat">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Curriculum-Aligned Content
             </div>
           </div>
-
-          <div class="skill-hex-card">
-            <div class="hex-glow hex-glow-cyan"></div>
-            <h3><span class="hex-icon">💻</span> Code</h3>
-            <div class="hex-bars">
-              <div class="hex-bar"><span>C# (Unity)</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:90%"></div>
-                </div>
-              </div>
-              <div class="hex-bar"><span>OOP / Design Patterns</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:85%"></div>
-                </div>
-              </div>
-              <div class="hex-bar"><span>Physics Systems</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:88%"></div>
-                </div>
-              </div>
+          <div class="progress-block">
+            <div class="progress-top">
+              <span>Development Progress</span>
+              <span class="progress-pct">65%</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" style="--prog:65%"></div>
             </div>
           </div>
+        </div>
 
-          <div class="skill-hex-card">
-            <div class="hex-glow hex-glow-green"></div>
-            <h3><span class="hex-icon">🧊</span> 3D & Tools</h3>
-            <div class="hex-bars">
-              <div class="hex-bar"><span>Blender</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:78%"></div>
-                </div>
-              </div>
-              <div class="hex-bar"><span>Photoshop</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:75%"></div>
-                </div>
-              </div>
-              <div class="hex-bar"><span>Lens Studio</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:72%"></div>
-                </div>
-              </div>
-            </div>
+        <div class="ongoing-card ongoing-add">
+          <div class="add-ring">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
           </div>
-
-          <div class="skill-hex-card">
-            <div class="hex-glow hex-glow-orange"></div>
-            <h3><span class="hex-icon">🤖</span> AI & More</h3>
-            <div class="hex-bars">
-              <div class="hex-bar"><span>AI Prompting</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:85%"></div>
-                </div>
-              </div>
-              <div class="hex-bar"><span>Gemini API</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:82%"></div>
-                </div>
-              </div>
-              <div class="hex-bar"><span>AI NPC / Enemy Logic</span>
-                <div class="bar-track">
-                  <div class="bar-fill" style="--w:80%"></div>
-                </div>
-              </div>
-            </div>
+          <h3>More Coming Soon</h3>
+          <p>New projects constantly in the pipeline. Check back for VR, AR, and AI-powered experiences.</p>
+          <div class="add-tags">
+            <span>VR</span><span>AR</span><span>AI</span><span>Tabletop</span>
           </div>
         </div>
 
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- PROJECTS -->
-    <section class="xr-section" id="projects">
-      <div class="xr-container">
-        <div class="sec-header centered" data-reveal>
-          <div class="sec-tag">// PROJECTS</div>
-          <h2 class="sec-title">Featured <span class="glow-text">Work</span></h2>
-        </div>
-
-        <div class="filter-bar" data-reveal>
-          <button class="filt active" data-filter="all">All</button>
-          <button class="filt" data-filter="3d">3D</button>
-          <button class="filt" data-filter="2d">2D</button>
-          <button class="filt" data-filter="vr">VR</button>
-          <button class="filt" data-filter="design">Design</button>
-        </div>
-
-        <div class="proj-grid" id="projGrid">
-
-          <!-- Winter Survival -->
-          <article class="proj-card" data-category="3d" data-reveal>
-            <div class="proj-card-border"></div>
-            <div class="proj-top">
-              <span class="proj-badge proj-badge-3d">3D OPEN-WORLD</span>
-              <div class="proj-tags"><span>Unity</span><span>C#</span><span>AI</span><span>Digifest Hackathon</span>
-              </div>
-            </div>
-            <div class="proj-icon-ring ring-blue">❄️</div>
-            <h3 class="proj-name">Winter Survival<br /><small>The Hunt for Tomorrow</small></h3>
-            <p class="proj-desc">3D open-world exploration survival game built for the Digifest Hackathon, Jaipur.
-              Navigate a harsh winter wilderness, gather food, evade intelligent predators, and protect your family.</p>
-            <div class="proj-chips">
-              <span>🌍 Open-World Exploration</span>
-              <span>🌨️ Day-Night Cycle</span>
-              <span>🐺 Predator AI</span>
-              <span>🍖 Quota System</span>
-              <span>🎵 Adaptive Sound</span>
-            </div>
-            <button class="proj-more" data-target="det-winter">Read More ›</button>
-            <div class="proj-detail" id="det-winter">
-              <h4>About</h4>
-              <p>Originally developed for the Digifest Hackathon in Jaipur (Top 10 Finish). You play as a lone family
-                man
-                forced to venture into a frozen open-world forest each day. With rising daily quotas and intelligent
-                wolves, every decision matters — run, distract, or sacrifice food to escape.</p>
-              <h4>Key Systems</h4>
-              <ul>
-                <li>🌍 <strong>Open-World Exploration</strong> – Freely explorable winter environment with level layout
-                  and asset integration</li>
-                <li>🌨️ <strong>Day-Night Cycle</strong> – Dynamic lighting transforms the environment</li>
-                <li>🐺 <strong>Predator AI</strong> – Wolves track movement and adjust behavior</li>
-                <li>🍖 <strong>Survival Quota</strong> – Escalating daily food requirements</li>
-                <li>❤️ <strong>Health System</strong> – Consequence-based survival mechanics</li>
-                <li>🎵 <strong>Adaptive Soundtrack</strong> – Music reacts to danger dynamically</li>
-                <li>❄️ <strong>Atmosphere</strong> – Designed to evoke isolation and urgency</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Ballgame -->
-          <article class="proj-card" data-category="2d" data-reveal>
-            <div class="proj-card-border"></div>
-            <div class="proj-top">
-              <span class="proj-badge proj-badge-2d">2D PLATFORMER</span>
-              <div class="proj-tags"><span>Unity</span><span>C#</span><span>Mobile</span></div>
-            </div>
-            <div class="proj-icon-ring ring-green">⚽</div>
-            <h3 class="proj-name">Ballgame<br /><small>Physics Platformer</small></h3>
-            <p class="proj-desc">Physics-driven ball platformer with multi-level progression, checkpoints,
-              hazards, and full mobile adaptation with touch controls.</p>
-            <div class="proj-chips">
-              <span>🎮 Physics Movement</span>
-              <span>🔁 Checkpoints</span>
-              <span>⚠️ Hazards</span>
-              <span>📱 Cross-Platform</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://abhiiix.itch.io/ballroll-2d" target="_blank" class="proj-link proj-link-itch">🎮 Play on
-                itch.io</a>
-            </div>
-            <button class="proj-more" data-target="det-ball">Read More ›</button>
-            <div class="proj-detail" id="det-ball">
-              <h4>Systems</h4>
-              <ul>
-                <li>🧠 <strong>Player Controller</strong> – Rigidbody physics, ground detection,
-                  area-based jump restrictions</li>
-                <li>🔁 <strong>Checkpoint System</strong> – Dynamic activation, session persistence,
-                  auto-respawn</li>
-                <li>⚠️ <strong>Hazard System</strong> – Spike balls, moving platforms, jump pads</li>
-                <li>📈 <strong>Level Design</strong> – Multi-level with progressive mechanic unlocks
-                </li>
-                <li>📱 <strong>Mobile Port</strong> – Touch controls, improved jump, cross-platform
-                  builds</li>
-              </ul>
-              <h4>Technical Highlights</h4>
-              <p>Strong OOP, modular scripts, tag-based collision detection, physics optimization.</p>
-            </div>
-          </article>
-
-          <!-- VR Shooter -->
-          <article class="proj-card" data-category="vr" data-reveal>
-            <div class="proj-card-border"></div>
-            <div class="proj-top">
-              <span class="proj-badge proj-badge-vr">VR / XR</span>
-              <div class="proj-tags"><span>Unity</span><span>XR Toolkit</span><span>C#</span></div>
-            </div>
-            <div class="proj-icon-ring ring-purple">🥽</div>
-            <h3 class="proj-name">VR Shooter<br /><small>XR Combat Prototype</small></h3>
-            <p class="proj-desc">Immersive first-person VR combat. Controller-based aiming, real-time hit
-              detection, enemy AI, and full XR Interaction Toolkit integration.</p>
-            <div class="proj-chips">
-              <span>🎯 Raycast Combat</span>
-              <span>🧠 Enemy AI</span>
-              <span>🎮 XR Input</span>
-              <span>⚡ VR Optimized</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://github.com/abhinandan-jain01/VrShooter.git" target="_blank"
-                class="proj-link proj-link-gh">🐙 View on GitHub</a>
-            </div>
-            <button class="proj-more" data-target="det-vr">Read More ›</button>
-            <div class="proj-detail" id="det-vr">
-              <h4>Systems</h4>
-              <ul>
-                <li>🎯 <strong>Weapon & Shooting</strong> – Controller-based aiming, raycast/projectile
-                  hit detection</li>
-                <li>🧠 <strong>Enemy Interaction</strong> – Behavior logic, damage detection, impact
-                  response</li>
-                <li>🎮 <strong>VR Interaction</strong> – XR Toolkit, object grabbing, real-time input
-                  mapping</li>
-                <li>⚡ <strong>Performance</strong> – Scene optimization for VR frame stability</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Enemy AI -->
-          <article class="proj-card" data-category="3d" data-reveal>
-            <div class="proj-card-border"></div>
-            <div class="proj-top">
-              <span class="proj-badge proj-badge-3d">AI PROTOTYPE</span>
-              <div class="proj-tags"><span>Unity</span><span>C#</span><span>NavMesh</span><span>FSM</span></div>
-            </div>
-            <div class="proj-icon-ring ring-blue">🧠</div>
-            <h3 class="proj-name">Enemy AI<br /><small>Modular FSM Combat AI</small></h3>
-            <p class="proj-desc">A fully modular, FSM-driven Enemy AI system for Unity. Features realistic
-              sight cones, event-driven hearing, dynamic combat states, IK weapon aiming, and tactical
-              cover-seeking behavior.</p>
-            <div class="proj-chips">
-              <span>🔎 Sight & Hearing</span>
-              <span>🗺️ NavMesh Chase</span>
-              <span>🎯 IK Aiming</span>
-              <span>🛡️ Cover Seeking</span>
-              <span>⚡ FSM Architecture</span>
-            </div>
-            <div class="proj-links">
-              <a href="https://abhiiix.itch.io/enemy-ai-prototype" target="_blank"
-                class="proj-link proj-link-itch">🎮 Play on itch.io</a>
-              <a href="https://github.com/abhinandan-jain01/Enemy-AI" target="_blank"
-                class="proj-link proj-link-gh">🐙 GitHub</a>
-            </div>
-            <button class="proj-more" data-target="det-enemy">Read More ›</button>
-            <div class="proj-detail" id="det-enemy">
-              <h4>About</h4>
-              <p>A prototype built to demonstrate advanced enemy behavior architecture. The AI is modular
-                by design — each concern (movement, perception, combat, health) lives in its own script,
-                making it easy to swap or extend without breaking existing logic.</p>
-              <h4>AI States</h4>
-              <ul>
-                <li>🚶 <strong>Idle / Patrol</strong> – Wanders waypoints while passively scanning for the
-                  player via sight and sound</li>
-                <li>🔍 <strong>Search</strong> – Triggered by noise (footsteps, gunshots); enemy halts,
-                  looks around, then moves to the last known position</li>
-                <li>🏃 <strong>Chase</strong> – Actively pursues via NavMesh; falls back to Search if
-                  line-of-sight is broken</li>
-                <li>🎯 <strong>Ranged / Melee</strong> – Dynamically switches attack type based on distance;
-                  ranged uses IK to physically aim at the player's chest</li>
-                <li>🛡️ <strong>Take Cover</strong> – When health drops below 50%, tactically analyzes the
-                  NavMesh to find cover behind solid geometry</li>
-              </ul>
-              <h4>Key Systems</h4>
-              <ul>
-                <li>👁️ <strong>Realistic Perception</strong> – Sight uses Raycast + angle checks;
-                  hearing is event-driven based on player action noise values</li>
-                <li>🎨 <strong>Procedural UI</strong> – Alert bubbles and health bars generated in C# at
-                  runtime; no fragile prefabs</li>
-                <li>🧩 <strong>Modular Scripts</strong> – <code>EnemySensor</code>, <code>EnemyPatrol</code>,
-                  <code>EnemyShooting</code>, <code>EnemyMelee</code>, <code>EnemyHealth</code> — all
-                  independently extensible</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- False Face -->
-          <article class="proj-card proj-card-wide" data-category="design" data-reveal>
-            <div class="proj-card-border"></div>
-            <div class="proj-top">
-              <span class="proj-badge proj-badge-design">TABLETOP</span>
-              <div class="proj-tags"><span>Jan–Dec 2025</span><span>Photoshop</span><span>Unity Proto</span>
-              </div>
-            </div>
-            <div class="proj-icon-ring ring-orange">🎭</div>
-            <h3 class="proj-name">False Face<br /><small>Asymmetric Social Deduction</small></h3>
-            <p class="proj-desc">4-player tabletop deduction game. Detectives race against a 6-round
-              deadline while identifying a hidden spy. Backed by 28 playtests and 40,000+ words of design
-              docs.</p>
-            <div class="proj-stats-row">
-              <div class="ps"><span class="ps-val">28</span><span class="ps-lbl">Playtests</span></div>
-              <div class="ps"><span class="ps-val">4.8<small>/5</small></span><span class="ps-lbl">Rating</span></div>
-              <div class="ps"><span class="ps-val">27<small>min</small></span><span class="ps-lbl">Playtime</span></div>
-              <div class="ps"><span class="ps-val">50/50</span><span class="ps-lbl">Balance</span></div>
-            </div>
-            <div class="proj-chips">
-              <span>🃏 34-Card System</span>
-              <span>🕵️ Asymmetric Roles</span>
-              <span>⏱️ Hard Deadline</span>
-              <span>📖 Publisher-Ready GDD</span>
-            </div>
-            <button class="proj-more" data-target="det-ff">Read More ›</button>
-            <div class="proj-detail" id="det-ff">
-              <h4>Design</h4>
-              <p>Three detectives must solve a mystery within 6 rounds while identifying the hidden spy.
-                Roles distributed via sealed envelopes for maximum tension.</p>
-              <h4>Contributions</h4>
-              <ul>
-                <li>🃏 <strong>34-Card System</strong> – 30 mystery + role-based asymmetric gameplay
-                  cards</li>
-                <li>⏱️ <strong>Hard Deadline</strong> – Guaranteed completion with strategic urgency
-                </li>
-                <li>📊 <strong>28 Playtests</strong> – Quantitative data collection → 50/50 win balance
-                </li>
-                <li>🎨 <strong>Visual Identity</strong> – Modern noir aesthetic, full component design
-                  system</li>
-                <li>📰 <strong>40,000+ Word GDD</strong> – Competitor analysis (6 games), strategy,
-                  Kickstarter-ready</li>
-              </ul>
-              <h4>Market Position</h4>
-              <p>Only social deduction game optimized for <em>exactly</em> 4 players with guaranteed
-                runtime.</p>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ONGOING -->
-    <section class="xr-section xr-section-alt" id="ongoing">
-      <div class="xr-container">
-        <div class="sec-header centered" data-reveal>
-          <div class="sec-tag">// LIVE</div>
-          <h2 class="sec-title">Currently <span class="glow-text">Building</span></h2>
-        </div>
-        <div class="ongoing-wrap" data-reveal>
-
-          <div class="ong-card ong-main">
-            <div class="ong-card-border"></div>
-            <div class="ong-status"><span class="ong-dot"></span>ACTIVE DEVELOPMENT</div>
-            <div class="ong-head">
-              <span class="ong-emoji">📱</span>
-              <div>
-                <h3>AR Education App</h3>
-                <p class="ong-sub">Physics for Class 8 Students</p>
-              </div>
-            </div>
-            <p class="ong-desc">Augmented reality app bringing Physics experiments to life for 8th graders.
-              Perform AR activities, take an AI-powered quiz evaluated by a Gemini AI tutor.</p>
-            <div class="ong-techs">
-              <span>Unity</span><span>AR Foundation</span><span>Gemini
-                API</span><span>C#</span><span>Android</span>
-            </div>
-            <div class="ong-feats">
-              <div class="of"><span>🔬</span> AR Physics Experiments</div>
-              <div class="of"><span>🤖</span> Gemini AI Tutor</div>
-              <div class="of"><span>📝</span> Quiz & Evaluation</div>
-              <div class="of"><span>🎓</span> Curriculum-Aligned</div>
-            </div>
-            <div class="ong-prog">
-              <div class="ong-prog-head"><span>Progress</span><span class="ong-pct">65%</span></div>
-              <div class="prog-track">
-                <div class="prog-fill" style="--p:65%"></div>
-              </div>
-            </div>
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="sec-label">// SEND_MESSAGE</div>
+      <h2 class="sec-title">Let's <span class="accent-text">Connect</span></h2>
+      <p class="contact-sub">Whether you need a game developer, creative collaborator, or just want to talk games — I'm in.</p>
+      <div class="contact-grid" data-reveal>
+        <a href="mailto:ajain191204@gmail.com" class="contact-card">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
-
-          <div class="ong-card ong-add">
-            <div class="ong-card-border ong-card-border-dashed"></div>
-            <div class="add-plus">+</div>
-            <h3>More Coming Soon</h3>
-            <p>New projects in VR, game design, and AI-powered experiences are always in the pipeline.</p>
-            <div class="ong-techs ong-techs-dim">
-              <span>VR</span><span>AR</span><span>AI</span><span>Tabletop</span>
-            </div>
+          <div><span class="contact-label">EMAIL</span><span class="contact-val">ajain191204@gmail.com</span></div>
+        </a>
+        <a href="tel:+918837798340" class="contact-card">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
           </div>
-
-        </div>
+          <div><span class="contact-label">PHONE</span><span class="contact-val">+91 88377 98340</span></div>
+        </a>
+        <a href="https://www.linkedin.com/in/abhinandan-jain-a547a0276" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </div>
+          <div><span class="contact-label">LINKEDIN</span><span class="contact-val">abhinandan-jain</span></div>
+        </a>
+        <a href="https://github.com/abhinandan-jain01" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </div>
+          <div><span class="contact-label">GITHUB</span><span class="contact-val">abhinandan-jain01</span></div>
+        </a>
+        <a href="https://abhiiix.itch.io" target="_blank" class="contact-card">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M0 1.5A1.5 1.5 0 0 1 1.5 0h21A1.5 1.5 0 0 1 24 1.5v21A1.5 1.5 0 0 1 22.5 24h-21A1.5 1.5 0 0 1 0 22.5V1.5zm7.5 3A4.5 4.5 0 0 0 3 9v6a4.5 4.5 0 0 0 4.5 4.5h9A4.5 4.5 0 0 0 21 15V9a4.5 4.5 0 0 0-4.5-4.5h-9zM9 10.5A1.5 1.5 0 1 1 9 7.5 1.5 1.5 0 0 1 9 10.5zm6 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM12 18a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+          </div>
+          <div><span class="contact-label">ITCH.IO</span><span class="contact-val">abhiiix.itch.io</span></div>
+        </a>
+        <a href="https://abhinandan-jain01.github.io/Portfolio/" target="_blank" class="contact-card contact-card-primary">
+          <div class="contact-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div><span class="contact-label">PORTFOLIO</span><span class="contact-val">View Live Site</span></div>
+        </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CONTACT -->
-    <section class="xr-section" id="contact">
-      <div class="xr-container">
-        <div class="sec-header centered" data-reveal>
-          <div class="sec-tag">// LINK</div>
-          <h2 class="sec-title">Let's <span class="glow-text">Connect</span></h2>
-        </div>
-        <p class="contact-sub" data-reveal>Looking for a passionate game developer, a collaborator, or just want
-          to talk games? I'm all in.</p>
-        <div class="contact-grid" data-reveal>
-          <a href="mailto:ajain191204@gmail.com" class="c-card">
-            <span class="c-icon">✉️</span>
-            <span class="c-label">Email</span>
-            <span class="c-val">ajain191204@gmail.com</span>
-          </a>
-          <a href="tel:+918837798340" class="c-card">
-            <span class="c-icon">📞</span>
-            <span class="c-label">Phone</span>
-            <span class="c-val">(+91) 88377 98340</span>
-          </a>
-          <a href="https://www.linkedin.com/in/abhinandan-jain-a547a0276" target="_blank" class="c-card">
-            <span class="c-icon">💼</span>
-            <span class="c-label">LinkedIn</span>
-            <span class="c-val">abhinandan-jain</span>
-          </a>
-          <a href="https://github.com/abhinandan-jain01" target="_blank" class="c-card">
-            <span class="c-icon">🐙</span>
-            <span class="c-label">GitHub</span>
-            <span class="c-val">abhinandan-jain01</span>
-          </a>
-          <a href="https://abhiiix.itch.io" target="_blank" class="c-card">
-            <span class="c-icon">🎮</span>
-            <span class="c-label">itch.io</span>
-            <span class="c-val">abhiiix</span>
-          </a>
-        </div>
-      </div>
-    </section>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-brand">[ABHINANDAN JAIN]</span>
+      <p>© 2025 · Crafted with passion for games &amp; XR</p>
+      <a href="#hero" class="footer-top">Back to Top ↑</a>
+    </div>
+  </footer>
 
-    <!-- FOOTER -->
-    <footer class="xr-footer">
-      <div class="xr-container footer-inner">
-        <div class="footer-brand">
-          <span class="fb-bracket">&lt;</span>ABHINANDAN JAIN<span class="fb-bracket">/&gt;</span>
-        </div>
-        <p>© 2026 · Crafted for immersive experiences</p>
-        <a href="#hero" class="ft-top">↑ TOP</a>
-      </div>
-    </footer>
-
-  </div><!-- /content -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="script.js"></script>
 </body>
-
 </html>
